@@ -1,21 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{url('assets/style.css')}}" />
-    <link rel="stylesheet" href="{{url('assets/css/bootstrap.css')}}" />
-    <link rel="stylesheet" href="{{url('assets/css/fonts.css')}}" />
-    <link rel="stylesheet" href="{{url('assets/css/style.css')}}" />
-    <script src="{{url('assets/js/bootstrapjquery.js')}}"></script>
-    <script src="{{url('assets/js/bootstrap.js')}}"></script>
-    <script src="{{url('assets/js/proper.js')}}"></script>
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">
-        <h1>hellow world</h1>
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-12 pt-2">
+            <div class="row">
+                <div class="col-8">
+                    <h1 class="display-one">Our Blog</h1>
+                    <p>Enjoy reading our blog, click on a post to read.</p>
+                </div>
+                    <div class="col-4">
+                        <p>Create new Post</p>
+                        <a href="/blog/create/post" class="btn btn-primary btn-sm">Add Post</a>
+                    </div>
+                    
+                @forelse ($posts as $post )
+                    <ul>
+                        <li class="text-justify">
+                            <a href="./blog/{{$post->id}}">{{ucfirst($post->title)}}</a>
+                        </li>
+                    </ul>
+                @empty
+                    <p class="text-warning">No blog post available</p>
+                @endforelse
+            </div>
+        </div>
     </div>
-</body>
-</html>
+</div>
+@endsection

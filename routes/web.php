@@ -14,7 +14,19 @@ use App\Http\Controllers\BlogPostController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('/blog', [BlogPostController::class, 'index'])->name('blog');
+
+Route::get('/blog/{blogPost}', [BlogPostController::class, 'show']);
+
+Route::get('/blog/create/post', [BlogPostController::class, 'create'])->name('blog/create/post');
+Route::post('/blog/create/post', [BlogPostController::class, 'store']);
+
+Route::get('/blog/{blogPost}/edit', [BlogPostController::class, 'edit'])->name('/blog/{blogPost}/edit');
+Route::put('/blog/{blogPost}/edit', [BlogPostController::class, 'update']);
+
+Route::delete('/blog/{blogPost}', [BlogPostController::class, 'destroy']);
+
+
